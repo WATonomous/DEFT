@@ -2,7 +2,7 @@
 # - https://github.com/xingyizhou/CenterTrack/pull/176
 # - https://github.com/fcwu/docker-ubuntu-vnc-desktop/blob/e4922ce92f945fc482994b7a0fd95ca5de7295b3/Dockerfile.amd64
 
-FROM nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04 as system
+FROM nvidia/cuda:11.1-devel-ubuntu20.04 as system
 
 ################################################################################
 # vnc desktop
@@ -84,7 +84,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends software-proper
 RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt-get update && apt-get install -y --no-install-recommends python3.6
 
-RUN cd /usr/bin && ln -s python3.6 python
+RUN cd /usr/bin && ln -sf python3.6 python
 RUN apt-get install -y --no-install-recommends \
   bash \
   unzip \
@@ -137,8 +137,6 @@ RUN python3.6 -m pip install  --use-feature=2020-resolver \
   numba \
   imgaug \
   numpy \
-  torch==1.4.0 \
-  torchvision==0.5.0 \
   Pillow==6.2.1 \
   tqdm \
   motmetrics==1.1.3 \
@@ -156,11 +154,7 @@ RUN pip3 install \
   lap \
   cython-bbox
 
-# cuda 11.1
-#RUN python3.6 -m pip install --use-feature=2020-resolver -U torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
-
-# cuda 10.2
-#RUN pip3 install torch torchvision torchaudio
+RUN python3.6 -m pip install torch==1.7.0+cu110 torchvision==0.8.1+cu110 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html
 
 RUN python3.6 -m pip install --use-feature=2020-resolver -U 'git+https://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI'
 
@@ -171,7 +165,7 @@ RUN bash -c "python -c 'import torch; assert torch.cuda.is_available(), \"Cuda i
 RUN apt-get update && apt-get install -y ninja-build
 RUN mkdir -p /networks \
     && cd /networks \
-    && git clone --recursive https://github.com/CharlesShang/DCNv2 \
+    && git clone --recursive https://github.com/MatthewHowe/DCNv2 \
     && cd DCNv2 \
     && bash ./make.sh
 
