@@ -167,7 +167,8 @@ RUN mkdir -p /networks \
     && cd /networks \
     && git clone --recursive https://github.com/MatthewHowe/DCNv2 \
     && cd DCNv2 \
-    && bash ./make.sh
+    && bash ./make.sh \
+    && echo "export PYTHONPATH=\$PYTHONPATH:$(pwd)/DCN" >> /etc/bash.bashrc
 
 # Install other dependencies
 RUN cd /tmp && wget --quiet https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb && dpkg -i ripgrep*.deb

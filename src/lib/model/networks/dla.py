@@ -25,7 +25,7 @@ from .base_model import BaseModel
 try:
     from dcn_v2 import DCN
 except:
-    print("import DCN failed")
+    print(f"{__file__}: import DCN failed")
     DCN = None
 
 

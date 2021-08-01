@@ -20,9 +20,9 @@ import torch.nn.functional as F
 import torch.utils.model_zoo as model_zoo
 
 try:
-    from ..DCNv2.dcn_v2 import DCN
+    from dcn_v2 import DCN
 except:
-    print("import DCN failed")
+    print(f"{__file__}: import DCN failed")
     DCN = None
 
 BN_MOMENTUM = 0.1
