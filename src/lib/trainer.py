@@ -37,8 +37,8 @@ class GenericLoss(torch.nn.Module):
         if "nuscenes_att" in opt.heads:
             self.crit_nuscenes_att = WeightedBCELoss()
         self.opt = opt
-        self.s_det = nn.Parameter(torch.ones(1))
-        self.s_id = nn.Parameter(torch.ones(1))
+        self.s_det = torch.nn.Parameter(torch.ones(1))
+        self.s_id = torch.nn.Parameter(torch.ones(1))
 
     def _sigmoid_output(self, output):
         if "hm" in output:
@@ -165,7 +165,7 @@ class ModleWithLoss(torch.nn.Module):
             x, batch["labels"], batch["current_indexes"], batch["next_indexes"]
         )
         loss_stats["matching"] = loss_matching
-        loss_stats["tot"] = torch.exp(-self.s_det)  * loss_stats["tot"] + torch.exp(-self.s_id) * loss_matching + (self.s_det + self.s_id)
+        loss_stats["tot"] = torch.exp(-self.loss.s_det)  * loss_stats["tot"] + torch.exp(-self.loss.s_id) * loss_matching + (self.loss.s_det + self.loss.s_id)
 
         return outputs[-1], loss_stats["tot"], loss_stats
 
