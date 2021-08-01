@@ -207,7 +207,7 @@ RUN sed -i 's#app/locale/#novnc/app/locale/#' /src/web/dist/static/novnc/app/ui.
 ################################################################################
 FROM system
 
-RUN apt-get install -y nomacs vlc
+RUN apt-get install -y nomacs mpv
 
 ENV CODE_SERVER_VERSION 3.10.2
 RUN cd /tmp \
