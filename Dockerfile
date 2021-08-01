@@ -2,7 +2,7 @@
 # - https://github.com/xingyizhou/CenterTrack/pull/176
 # - https://github.com/fcwu/docker-ubuntu-vnc-desktop/blob/e4922ce92f945fc482994b7a0fd95ca5de7295b3/Dockerfile.amd64
 
-FROM nvidia/cuda:11.1-devel-ubuntu20.04 as system
+FROM nvidia/cuda:11.2.0-cudnn8-devel-ubuntu20.04 as system
 
 ################################################################################
 # vnc desktop

@@ -4,3 +4,5 @@ __pycache__/
 /.env
 /.code-server
 /data
+/src/lib/model/networks/DCNv2/
+/exp
