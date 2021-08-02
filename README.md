@@ -36,7 +36,7 @@ sudo service docker restart
 
 ```bash
 ./generate-dot-env.sh
-docker-compose up -d
+HOST=$(hostname) docker-compose up -d
 ```
 
 4. Open a shell

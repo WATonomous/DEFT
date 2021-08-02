@@ -324,6 +324,8 @@ def write_results(filename, results, data_type):
         save_format = "{frame},{id},{x1},{y1},{w},{h},1,-1,-1,-1\n"
     elif data_type == "kitti_tracking":
         save_format = "{frame} {id} Car 0 0 -10 {x1} {y1} {x2} {y2} -10 -10 -10 -1000 -1000 -1000 -10\n"
+    elif data_type == "custom":
+        save_format = '{{"frame_id":"{frame}", "track_id":"{id}", "x1":"{x1}", "y1":"{y1}", "x2":"{x2}", "y2":"{y2}", "w":"{w}", "h":"{h}"}}\n'
     else:
         raise ValueError(data_type)
 
